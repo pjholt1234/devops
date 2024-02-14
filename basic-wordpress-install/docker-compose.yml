@@ -1,0 +1,24 @@
+version: '3.1'
+
+networks:
+  wordpress-network:
+    driver: bridge
+
+services:
+  wordpress:
+    image: "wordpress:${WORDPRESS_VERSION}"
+    restart: always
+    ports:
+      - 8080:80
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - APP_URL=${APP_URL}
+    volumes:
+      - .:/var/www/html
+    networks:
+      - wordpress-network
