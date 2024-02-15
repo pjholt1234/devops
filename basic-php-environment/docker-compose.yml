@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  apache:
+    image: php:7.4-apache  # Specify the desired PHP version here
+    container_name: my_php_apache_server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./php-site:/var/www/html
+    restart: always
